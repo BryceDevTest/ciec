@@ -1,275 +1,67 @@
-/* Import Fonts */
+/* load the font from the same folder */
 @font-face {
-    font-family: 'PixelTitle';
-    src: url('/Title - Font - Thick  Smooth Pixel.ttf') format('truetype');
+  font-family: 'PublicPixel';
+  src: url('PublicPixel.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 
-@font-face {
-    font-family: 'PixelBody';
-    src: url('/PublicPixel.ttf') format('truetype');
-}
-
-/* Basic Styles */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-html, body {
-    height: 100%;
-    overflow: auto; /* Allow scrolling */
-}
-
+/* basic reset & style */
 body {
-    min-height: 100vh;
-    padding: 20px 0;
-    background-color: #0d0d21; /* Deep navy blue */
-    color: #ffffff;
-    font-family: 'PixelBody', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start; /* Change from center to flex-start */
-    text-align: center;
-    image-rendering: pixelated; /* Helps with pixelated look */
+  margin: 0;
+  padding: 0;
+  background: black;
+  color: white;
+  font-family: 'PublicPixel', monospace;
 }
 
-/* Starry Sky Canvas */
-#starry-sky-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -2;
-}
-
-/* Scanlines Overlay */
-.scanlines {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: repeating-linear-gradient(
-        0deg,
-        rgba(0, 0, 0, 0) 0%,
-        rgba(0, 0, 0, 0) 98%,
-        rgba(255, 255, 255, 0.05) 100%
-    );
-    background-size: 100% 4px;
-    pointer-events: none;
-    z-index: 1;
-    animation: scanline-flicker 10s linear infinite;
-    opacity: 0.5;
-}
-
-@keyframes scanline-flicker {
-    0% { background-position: 0 0; }
-    100% { background-position: 0 -20px; }
-}
-
-/* Main Container */
-.container {
-    position: relative;
-    z-index: 0;
-    width: 100%;
-    max-width: 480px; /* Good mobile max-width */
-    padding: 20px;
-    margin: 40px auto;
-}
-
-/* Header */
-header h1 {
-    display: none; /* Hide the header since we don't need it anymore */
-}
-
-/* Homepage Specific Styles */
-.homepage {
-    max-width: 800px;
-    margin: 40px auto; /* Add margin for better scrolling experience */
-}
-
-.homepage h1 {
-    display: block;
-    font-family: 'PixelBody', sans-serif;
-    font-size: 1.5rem;
-    margin-bottom: 40px;
-    color: #ffcc00;
-    text-shadow: 3px 3px 0px #c63a3a;
-}
-
-.content-section {
-    background-color: rgba(74, 74, 127, 0.8);
-    border: 3px solid #ffffff;
-    padding: 20px;
-    margin-bottom: 30px;
-    text-align: left;
-}
-
-.content-section h2 {
-    font-family: 'PixelBody', sans-serif;
-    font-size: 1.2rem;
-    margin-bottom: 15px;
-    color: #ffcc00;
-}
-
-.content-section p {
-    font-size: 1rem;
-    line-height: 1.6;
-}
-
-/* Add table styles */
-.services-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    background-color: rgba(74, 74, 127, 0.8);
-    border: 3px solid #ffffff;
-}
-
-.services-table th,
-.services-table td {
-    padding: 15px;
-    text-align: left;
-    border-bottom: 2px solid #ffffff;
-}
-
-.services-table th {
-    color: #ffcc00;
-    font-size: 1.1rem;
-}
-
-.services-table td {
-    font-size: 1rem;
-}
-
-.services-table tr:last-child td {
-    border-bottom: none;
-}
-
-/* Responsive adjustments for homepage */
-@media (min-width: 768px) {
-    .homepage h1 {
-        font-size: 1.8rem;
-    }
-    
-    .content-section h2 {
-        font-size: 1.5rem;
-    }
-    
-    .content-section p {
-        font-size: 1.2rem;
-    }
-}
-
-/* Contact page specific styles */
-.contact-container {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    margin: 40px 0;
-}
-
-.contact-card {
-    background-color: rgba(74, 74, 127, 0.8);
-    border: 3px solid #ffffff;
-    padding: 30px;
-    text-align: center;
-    transition: transform 0.2s ease;
-    word-break: break-word; /* Allow long emails to wrap */
-}
-
-.contact-card:hover {
-    transform: translateY(-5px);
-}
-
-.contact-icon {
-    font-size: 2.5rem;
-    margin-bottom: 15px;
-}
-
-.contact-card h2 {
-    color: #ffcc00;
-    margin-bottom: 15px;
-    font-size: 1.2rem;
-}
-
-.contact-info {
-    font-size: 0.9rem; /* Slightly smaller font size */
-    color: #ffffff;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    max-width: 100%;
-    padding: 0 10px;
-}
-
-@media (min-width: 768px) {
-    .contact-container {
-        flex-direction: row;
-        justify-content: center;
-        align-items: stretch;
-        flex-wrap: wrap; /* Allow cards to wrap if needed */
-    }
-
-    .contact-card {
-        flex: 1;
-        min-width: 250px; /* Minimum width to prevent squishing */
-        max-width: 300px;
-    }
-    
-    .contact-info {
-        font-size: 1rem; /* Slightly larger on desktop */
-    }
-}
-
-/* Menu Navigation */
-.menu {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
+/* menu button style */
 .menu-button {
-    font-family: 'PixelBody', sans-serif;
-    text-decoration: none;
-    color: #ffffff;
-    background-color: #4a4a7f; /* Muted blue */
-    padding: 15px 20px;
-    border: 3px solid #ffffff;
-    box-shadow: 0 5px 0 #ffffff; /* 3D effect */
-    transition: all 0.05s ease-in-out;
-    font-size: 1.2rem;
-    cursor: pointer;
-    text-transform: uppercase;
+  font-family: 'PublicPixel', monospace;
+  color: white;
+  text-decoration: none;
+  padding: 10px 15px;
+  display: inline-block;
 }
 
-.menu-button:hover, .menu-button:focus {
-    background-color: #ffcc00; /* Yellow flash */
-    color: #0d0d21;
-    border-color: #ffcc00;
-    box-shadow: 0 5px 0 #c63a3a;
-    transform: translateY(-2px);
-    outline: none;
+/* container style */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
-.menu-button:active {
-    background-color: #ff9900;
-    transform: translateY(3px);
-    box-shadow: 0 2px 0 #c63a3a;
+/* nav menu style */
+.menu {
+  display: flex;
+  gap: 15px;
+  background: #111;
+  padding: 10px 20px;
 }
 
-/* Responsive adjustments for larger screens */
-@media (min-width: 768px) {
-    header h1 {
-        font-size: 3.5rem;
-        margin-top: 30px; /* Reduced from 80px to keep it very high on desktop too */
-    }
-    .menu-button {
-        font-size: 1.5rem;
-        padding: 20px 30px;
-    }
-    .container {
-        max-width: 600px;
-    }
+/* canvas & scanlines basic styles */
+#starry-sky-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+}
+
+.scanlines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.05) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  z-index: 0;
 }
